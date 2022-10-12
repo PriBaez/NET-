@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+  app:
+    container_name: api_netmongo
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "7211:7211"
+    depends_on:
+      - db
+
+  db:
+    container_name: mongonetdb
+    image: mongo
+    ports:
+      - "27017:27017"
+    expose:
+      - 27017
+    volumes:
+      - DB:/var/lib/mongodb/data
+
+volumes:
+  DB: 
